@@ -39,6 +39,14 @@ class PostsController {
         $post = Post::insertar($aut, $cont, $img, $tit, $crea, $modif);
         //+ post insertado correctamente
     }
+    
+    public function vistaUpdate(){
+        
+    }
+    
+    public function update(){
+        
+    }
 
 }
 

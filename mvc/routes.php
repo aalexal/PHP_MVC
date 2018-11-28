@@ -19,7 +19,7 @@ function call($controller, $action) {
 // consideramos estos valores "permitidos"
 // agregando una entrada para el nuevo controlador y sus acciones.
 $controllers = array( 'pages' => ['home', 'error'],
-                      'posts' => ['index', 'show', 'vistaInsert', 'insert']);
+                      'posts' => ['index', 'show', 'vistaInsert', 'insert', 'vistaUpdate', 'update']);
 // verifica que tanto el controlador como la acción solicitados estén permitidos
 // Si alguien intenta acceder a otro controlador y/o acción, será redirigido al 
 //método de error del controlador de pages.

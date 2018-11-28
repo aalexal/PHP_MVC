@@ -65,6 +65,10 @@ class Post {
         //Reenvíamos a la vista de insertar de nuevo
         header("Location: ?controller=posts&action=vistaInsert");
     }
+    
+    public static function modificar(){
+        
+    }
 
 }
 

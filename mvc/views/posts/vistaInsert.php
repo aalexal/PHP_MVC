@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>title</title>
+        <title>Insertar Post</title>
     </head>
     <body>
         <!--Formulario para insertar un post, al clicar el botón se enviaran todos los datos al action con método post-->
