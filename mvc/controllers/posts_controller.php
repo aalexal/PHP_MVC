@@ -21,15 +21,22 @@ class PostsController {
     }
     
     public function vistaInsert() {
-        //no modelo, solo vista
-        require_once('views/posts/vistaInsert.php');
-        //action llama a metodo insertar con post, action=insert()method post
-        
+        //no modelo, solo vista. 
+        //Mostramos el formulario de insercion
+        require_once('views/posts/vistaInsert.php');      
     }
     
     public function insert() {
-        $post = Post::insertar();
-        require_once('views/posts/vistaInsert.php'); //Llamar vista show si queremos ir a home
+        //Recoger datos del formulario de inserción
+        $aut = $_POST['autIns'];
+        $cont = $_POST['postIns'];
+        $img = $_POST['imgIns'];
+        $tit = $_POST['titIns'];
+        $crea = $_POST['dateCIns'];
+        $modif = $_POST['dateMIns'];
+        
+        //Mandar estos datos al método insertar para poder insertarlos dentro de la base de datos
+        $post = Post::insertar($aut, $cont, $img, $tit, $crea, $modif);
         //+ post insertado correctamente
     }
 

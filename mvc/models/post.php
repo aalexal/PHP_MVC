@@ -2,7 +2,6 @@
 
 class Post {
 
-    // definimos tres atributos
     // los declaramos como públicos para acceder directamente $post->author
     public $id;
     public $author;
@@ -26,10 +25,10 @@ class Post {
         $list = [];
         $db = Db::getInstance();
         $req = $db->query('SELECT * FROM posts');
-        // creamos una lista de objectos post y recorremos la respuesta de la 
+        // creamos una lista de objectos post y recorremos la respuesta de la
         //consulta
         foreach ($req->fetchAll() as $post) {
-            $list[] = new Post($post['id'], $post['author'], $post['content'], $post['imatge'], $post['titol'], $post['dataCreacio'], $post['dataModif'] );
+            $list[] = new Post($post['id'], $post['author'], $post['content'], $post['imatge'], $post['titol'], $post['dataCreacio'], $post['dataModif']);
         }
         return $list;
     }
@@ -44,12 +43,27 @@ class Post {
         $post = $req->fetch();
         return new Post($post['id'], $post['author'], $post['content'], $post['imatge'], $post['titol'], $post['dataCreacio'], $post['dataModif']);
     }
-    
-    public static function insertar() {
-        //Crear Insert
+
+    public static function insertar($author, $content, $imatge, $titol, $dataCreacio, $dataModif) {
+        
+        //Obtenemos una instancia de la base de datos para poder tratar con ella
+        $db = Db::getInstance();
+
+        //Creamos la sentencia que queremos ejecutar (insertar)
+        $req = $db->prepare("INSERT INTO posts (author, content, imatge, titol, dataCreacio, dataModif) VALUES (:author, :content, :imatge, :titol, :dataCreacio, :dataModif)");
+        
+        //Vinculamos las variables recibidas del formulario a un parametro de sustitucion (:var) para poder usarlo en la sentencia a ejecutar
+        $req->bindParam(":author", $author);
+        $req->bindParam(":content", $content);
+        $req->bindParam(":imatge", $imatge);
+        $req->bindParam(":titol", $titol);
+        $req->bindParam(":dataCreacio", $dataCreacio);
+        $req->bindParam(":dataModif", $dataModif);
+        
+        $req->execute();
 
         //Reenvíamos a la vista de insertar de nuevo
-        //header("Location: ?controller=posts&action=vistaInsert");
+        header("Location: ?controller=posts&action=vistaInsert");
     }
 
 }
