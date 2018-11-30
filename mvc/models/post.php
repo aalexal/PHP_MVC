@@ -60,7 +60,7 @@ class Post {
         $req->bindParam(":titol", $titol);
         $req->bindParam(":dataCreacio", $dataCreacio);
         $req->bindParam(":dataModif", $dataModif);
-        
+
         //Ejecutamos la sentencia
         $req->execute();
 
@@ -87,7 +87,25 @@ class Post {
 
         //Ejecutamos la sentencia
         $req->execute();
-        
+
+        //Despúes de ejecutar la sentencia redirigimos a la página índex
+        header("Location: ?controller=posts&action=index");
+    }
+
+    //Recibimos por parámetro el id del post que queremos eliminar
+    public static function delete($id) {
+        //Obtenemos una instancia de la base de datos para poder tratar con ella
+        $db = Db::getInstance();
+
+        //Creamos la sentencia que queremos ejecutar (modificar)
+        $req = $db->prepare("DELETE FROM posts WHERE posts.id = :id ;");
+
+        //Vinculamos la variable recibida a un parametro de sustitucion (:var) para poder usarlo en la sentencia a ejecutar
+        $req->bindParam(":id", $id);
+
+        //Ejecutamos la sentencia
+        $req->execute();
+
         //Despúes de ejecutar la sentencia redirigimos a la página índex de nuevo
         header("Location: ?controller=posts&action=index");
     }

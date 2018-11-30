@@ -19,15 +19,15 @@ class PostsController {
         $post = Post::find($_GET['id']);
         require_once('views/posts/show.php');
     }
-    
+
     public function vistaInsert() {
         //no modelo, solo vista. 
         //Mostramos el formulario de insercion
-        require_once('views/posts/vistaInsert.php');      
+        require_once('views/posts/vistaInsert.php');
     }
-    
+
     public function insert() {
-        
+
         //Recoger datos del formulario de inserción
         $aut = $_POST['autIns'];
         $cont = $_POST['postIns'];
@@ -35,23 +35,23 @@ class PostsController {
         $tit = $_POST['titIns'];
         $crea = $_POST['dateCIns'];
         $modif = $_POST['dateMIns'];
-        
+
         //Mandar estos datos al método insertar para poder insertarlos dentro de la base de datos
         $post = Post::insertar($aut, $cont, $img, $tit, $crea, $modif);
         //+ post insertado correctamente
     }
-    
-    public function vistaUpdate(){
-        
+
+    public function vistaUpdate() {
+
         //Obtenemos los datos del post con el id indicado para rellenar el formulario con los datos correspondientes
         $post = Post::find($_GET['id']);
-        
+
         //Llamamos al formulario
         require_once('views/posts/vistaUpdate.php');
     }
-    
-    public function update(){
-        
+
+    public function update() {
+
         //Recoger datos del formulario de modificación
         $id = $_POST['idUpd'];
         $aut = $_POST['autUpd'];
@@ -60,9 +60,18 @@ class PostsController {
         $tit = $_POST['titUpd'];
         $crea = $_POST['dateCUpd'];
         $modif = $_POST['dateMUpd'];
-        
+
         //Mandar estos datos al método insertar para poder insertarlos dentro de la base de datos
         $post = Post::modificar($id, $aut, $cont, $img, $tit, $crea, $modif);
+    }
+
+    public function delete() {
+
+        //Recojo el dato id de la url y se lo asigno a una variable para poder enviarlo al método delete() y borrar el post deseado
+        $id = $_GET['id'];
+
+        //Llamada al método delete del modelo post
+        $post = Post::delete($id);
     }
 
 }
