@@ -5,7 +5,8 @@
     <body>
         <!--Formulario para insertar un post, al clicar el botón se enviaran todos los datos al action con método post-->
         <form id="formInsert" name="formInsert" action="?controller=posts&action=insert" method="post">
-            <br><label for="autIns">Autor:</label>
+            <p><strong>Insertar Post:</strong></p>
+            <label for="autIns">Autor:</label>
             <input id="autIns" name="autIns" type="text"/>
             <br><label for="postIns">Post:</label>
             <input id="postIns" name="postIns" type="text"/>

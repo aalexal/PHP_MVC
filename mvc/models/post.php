@@ -41,17 +41,18 @@ class Post {
         // preparamos la sentencia y reemplazamos :id con el valor de $id
         $req->execute(array('id' => $id));
         $post = $req->fetch();
+        //Nos devuelve el post con el id establecido
         return new Post($post['id'], $post['author'], $post['content'], $post['imatge'], $post['titol'], $post['dataCreacio'], $post['dataModif']);
     }
 
     public static function insertar($author, $content, $imatge, $titol, $dataCreacio, $dataModif) {
-        
+
         //Obtenemos una instancia de la base de datos para poder tratar con ella
         $db = Db::getInstance();
 
         //Creamos la sentencia que queremos ejecutar (insertar)
         $req = $db->prepare("INSERT INTO posts (author, content, imatge, titol, dataCreacio, dataModif) VALUES (:author, :content, :imatge, :titol, :dataCreacio, :dataModif)");
-        
+
         //Vinculamos las variables recibidas del formulario a un parametro de sustitucion (:var) para poder usarlo en la sentencia a ejecutar
         $req->bindParam(":author", $author);
         $req->bindParam(":content", $content);
@@ -60,14 +61,35 @@ class Post {
         $req->bindParam(":dataCreacio", $dataCreacio);
         $req->bindParam(":dataModif", $dataModif);
         
+        //Ejecutamos la sentencia
         $req->execute();
 
         //Reenvíamos a la vista de insertar de nuevo
         header("Location: ?controller=posts&action=vistaInsert");
     }
-    
-    public static function modificar(){
+
+    public static function modificar($id, $author, $content, $imatge, $titol, $dataCreacio, $dataModif) {
+
+        //Obtenemos una instancia de la base de datos para poder tratar con ella
+        $db = Db::getInstance();
+
+        //Creamos la sentencia que queremos ejecutar (modificar)
+        $req = $db->prepare("UPDATE posts SET author = :author, content = :content, imatge = :imatge, titol = :titol, dataCreacio = :dataCreacio, dataModif = :dataModif WHERE posts.id = :id ;");
+
+        //Vinculamos las variables recibidas del formulario a un parametro de sustitucion (:var) para poder usarlo en la sentencia a ejecutar
+        $req->bindParam(":id", $id);
+        $req->bindParam(":author", $author);
+        $req->bindParam(":content", $content);
+        $req->bindParam(":imatge", $imatge);
+        $req->bindParam(":titol", $titol);
+        $req->bindParam(":dataCreacio", $dataCreacio);
+        $req->bindParam(":dataModif", $dataModif);
+
+        //Ejecutamos la sentencia
+        $req->execute();
         
+        //Despúes de ejecutar la sentencia redirigimos a la página índex de nuevo
+        header("Location: ?controller=posts&action=index");
     }
 
 }

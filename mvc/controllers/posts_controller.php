@@ -27,6 +27,7 @@ class PostsController {
     }
     
     public function insert() {
+        
         //Recoger datos del formulario de inserción
         $aut = $_POST['autIns'];
         $cont = $_POST['postIns'];
@@ -42,10 +43,26 @@ class PostsController {
     
     public function vistaUpdate(){
         
+        //Obtenemos los datos del post con el id indicado para rellenar el formulario con los datos correspondientes
+        $post = Post::find($_GET['id']);
+        
+        //Llamamos al formulario
+        require_once('views/posts/vistaUpdate.php');
     }
     
     public function update(){
         
+        //Recoger datos del formulario de modificación
+        $id = $_POST['idUpd'];
+        $aut = $_POST['autUpd'];
+        $cont = $_POST['postUpd'];
+        $img = $_POST['imgUpd'];
+        $tit = $_POST['titUpd'];
+        $crea = $_POST['dateCUpd'];
+        $modif = $_POST['dateMUpd'];
+        
+        //Mandar estos datos al método insertar para poder insertarlos dentro de la base de datos
+        $post = Post::modificar($id, $aut, $cont, $img, $tit, $crea, $modif);
     }
 
 }
