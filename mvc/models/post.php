@@ -51,9 +51,11 @@ class Post {
         $db = Db::getInstance();
 
         //Creamos la sentencia que queremos ejecutar (insertar)
-        $req = $db->prepare("INSERT INTO posts (author, content, imatge, titol, dataCreacio, dataModif) VALUES (:author, :content, :imatge, :titol, :dataCreacio, :dataModif)");
+        $req = $db->prepare("INSERT INTO posts (author, content, imatge, titol, dataCreacio, dataModif) "
+                . "VALUES (:author, :content, :imatge, :titol, :dataCreacio, :dataModif)");
 
-        //Vinculamos las variables recibidas del formulario a un parametro de sustitucion (:var) para poder usarlo en la sentencia a ejecutar
+        //Vinculamos las variables recibidas del formulario a un parametro de sustitucion (:var) para poder 
+        //usarlo en la sentencia a ejecutar
         $req->bindParam(":author", $author);
         $req->bindParam(":content", $content);
         $req->bindParam(":imatge", $imatge);
@@ -74,9 +76,11 @@ class Post {
         $db = Db::getInstance();
 
         //Creamos la sentencia que queremos ejecutar (modificar)
-        $req = $db->prepare("UPDATE posts SET author = :author, content = :content, imatge = :imatge, titol = :titol, dataCreacio = :dataCreacio, dataModif = :dataModif WHERE posts.id = :id ;");
+        $req = $db->prepare("UPDATE posts SET author = :author, content = :content, imatge = :imatge, "
+                . "titol = :titol, dataCreacio = :dataCreacio, dataModif = :dataModif WHERE posts.id = :id ;");
 
-        //Vinculamos las variables recibidas del formulario a un parametro de sustitucion (:var) para poder usarlo en la sentencia a ejecutar
+        //Vinculamos las variables recibidas del formulario a un parametro de sustitucion (:var) para 
+        //poder usarlo en la sentencia a ejecutar
         $req->bindParam(":id", $id);
         $req->bindParam(":author", $author);
         $req->bindParam(":content", $content);

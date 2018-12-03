@@ -11,7 +11,7 @@
             <br><label for="postIns">Post:</label>
             <input id="postIns" name="postIns" type="text"/>
             <br><label for="imgIns">Imatge:</label>
-            <input id="imgIns" name="imgIns" type="text"/>
+            <input id="imgIns" name="imgIns" type="file"/>
             <br><label for="titIns">Títol:</label>
             <input id="titIns" name="titIns" type="text"/>
             <br><label for="dateCIns">Data Creació:</label>

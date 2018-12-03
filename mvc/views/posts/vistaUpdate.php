@@ -14,7 +14,7 @@
             <br><label for="postUpd">Post:</label>
             <input id="postUpd" name="postUpd" type="text" value="<?php echo $post->content; ?>"/>
             <br><label for="imgUpd">Imatge:</label>
-            <input id="imgUpd" name="imgUpd" type="text" value="<?php echo $post->imatge; ?>"/>
+            <input id="imgUpd" name="imgUpd" type="file" value="<?php echo $post->imatge; ?>"/>
             <br><label for="titUpd">Títol:</label>
             <input id="titUpd" name="titUpd" type="text" value="<?php echo $post->titol; ?>"/>
             <br><label for="dateCUpd">Data Creació:</label>
